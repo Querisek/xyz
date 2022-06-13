@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator</title>
+    <style>
+        body {
+    background-color:#434343;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', serif;
+}
+
+.pasek {
+    background-color:#595959;
+    text-shadow:2px 2px 5px #000000;
+    box-shadow:2px 2px 5px #000000;
+    color:#ffffff;
+    list-style:none;
+    text-align:center;
+    padding:20px 0 20px 0;
+}
+
+li {
+    display:inline-block;
+    padding-right:50px;
+}
+
+a {
+    text-decoration:none;
+    color:#ffffff;
+}
+
+a:hover {
+    color:#c1c1c1;
+}
+
+        #div1 {
+            position:absolute;
+            width: 350px;
+            height: 200px;
+            top: 150px;
+            left: 220px;
+            margin: 30px;
+            padding: 25px;
+            border:rgb(16, 3, 133) 10px dashed;
+            background-color: rgb(68, 169, 228);
+        }
+    </style>
+
+    <script>
+function Dodaj()
+{
+    form1.c1.value = parseFloat(form1.a1.value) + parseFloat(form1.b1.value);
+}
+function Odejmij()
+{
+    form1.c1.value = parseFloat(form1.a1.value) - parseFloat(form1.b1.value);
+}
+function Pomnoz()
+{
+    form1.c1.value = parseFloat(form1.a1.value) * parseFloat(form1.b1.value);
+}
+function Dziel()
+{
+    form1.c1.value = parseFloat(form1.a1.value) / parseFloat(form1.b1.value);
+}
+function Pierwiastek()
+{
+    let a = prompt("Podaj wartosc do liczenia pierwiastka kwadratowego", "");
+    alert("Wartosc pierwiastka z liczby " + a + " wynosi " + Math.sqrt(a));
+}
+function Silnia()
+{
+    let a = prompt("Podaj silnie", "");
+    let b = 1;
+    for(let i = a; i > 1; i--)
+    {
+        b *= i;
+    }
+    alert("Wartosc silni z liczby " + a + " wynosi " + b);
+}
+function Potega()
+{
+    let a = prompt("Podaj liczbe do policzenia jej potegi", "");
+    alert("Wartosc potegi liczby " + a + " wynosi " + Math.pow(a, 2))
+}
+
+    </script>
+</head>
+<body>
+    <ul class="pasek">
+        <li><a href="kalkulator.html">Kalkulator</a></li>
+        <li><a href="div.html">Div</a></li>
+        <li><a href="memory.html">Gra memory</a></li>
+        <li><a href="galeria.html">Galeria</a></li>
+        <li><a href="kolkoikrzyzyk.html">Kolko i krzyzyk</a></li>
+        <li><a href="przesuwanieobrazkow.html">Przesuwanie obrazkow</a></li>
+        <li><a href="pilka.html">Odbijanie pilki</a></li>
+    </ul>
+    
+    <div id="div1">
+        <form name="form1">
+        <fieldset><legend><b>Kalkulator</b></legend>
+            <input type="text" name="a1" size="5">
+            <input type="button" value="+" onclick="Dodaj()">
+            <input type="button" value="-" onclick="Odejmij()">
+            <input type="button" value="*" onclick="Pomnoz()">
+            <input type="button" value="/" onclick="Dziel()">
+            <input type="text" name="b1" size="5"><br><hr>
+            <input type="text" name="c1" size="5"><br><hr>
+            <input type="button" value="sqrt" onclick="Pierwiastek()">
+            <input type="button" value="!" onclick="Silnia()">
+            <input type="button" value="a^2" onclick="Potega()">
+        </fieldset>
+        </form>
+    </div>
+
+</body>
+</html>

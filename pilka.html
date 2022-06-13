@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odbijanie pilki</title>
+<style>
+    body {
+    background-color:#434343;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', serif;
+}
+
+.pasek {
+    background-color:#595959;
+    text-shadow:2px 2px 5px #000000;
+    box-shadow:2px 2px 5px #000000;
+    color:#ffffff;
+    list-style:none;
+    text-align:center;
+    padding:20px 0 20px 0;
+}
+
+li {
+    display:inline-block;
+    padding-right:50px;
+}
+
+a {
+    text-decoration:none;
+    color:#ffffff;
+}
+
+a:hover {
+    color:#c1c1c1;
+}
+
+input[type="button"] {
+    border:2px solid #c3c3c3;
+    background-color:#c1c1c1;
+    padding:4px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-left:10px;
+    display:block;
+}
+
+    #i1 {position: absolute; top:450px; left:275px; height:50px; width:50px;}
+    #i1 img {height:50px; width:50px;}
+    #a1 {position: absolute; left:200px; top:500px; height:10px; width:200px; background-color:#878787; border: 1px solid #c1c1c1;}
+</style>
+<script>
+    let id1, xx, yy;
+    let licznik = 0;
+    function StartMove()
+    {
+        xx = 275;
+        yy = 450;
+        console.log(xx);
+        i1.style.left = xx + 'px';
+        i1.style.top = yy + 'px';
+        id1 = setInterval("gs()", 30);
+    }
+
+        let k = 1;
+        let l = 1;
+
+    function gs()
+    {
+        xx -= 10 * k;
+        yy -= 10 * l;
+        if(xx < 0)
+        k = -1;
+        if(xx > document.documentElement.clientWidth-50)
+        k = 1;
+        if(yy > document.documentElement.clientHeight-50)
+        l = 1;
+        if(yy < 0)
+        l = -1;
+        if(a1.offsetTop < i1.offsetTop)
+        {
+        window.location.reload();
+        alert("Przegrales!");
+        licznik = 0;
+        }
+        if(i1.offsetLeft + 50 > a1.offsetLeft && i1.offsetLeft + 50 < a1.offsetLeft + 200 && i1.offsetTop == a1.offsetTop - 50){
+               l = 1
+               yy -= 10 * l;
+        }
+
+        i1.style.left = xx + 'px';
+        i1.style.top = yy + 'px';
+    }
+
+</script>
+</head>
+<body>
+    <ul class="pasek">
+        <li><a href="kalkulator.html">Kalkulator</a></li>
+        <li><a href="div.html">Div</a></li>
+        <li><a href="memory.html">Gra memory</a></li>
+        <li><a href="galeria.html">Galeria</a></li>
+        <li><a href="kolkoikrzyzyk.html">Kolko i krzyzyk</a></li>
+        <li><a href="przesuwanieobrazkow.html">Przesuwanie obrazkow</a></li>
+        <li><a href="pilka.html">Odbijanie pilki</a></li>
+    </ul>
+
+    <div id="i1"><img src="kolko.png" onclick="StartMove()"></div>
+    <div id="a1"></div>
+    <script>
+        document.addEventListener('keydown', keyDown);
+        let x = 200;
+        function keyDown(e) 
+        {
+            let stepSize = 10;
+
+            
+            if(e.keyCode === 37 && a1.offsetLeft > 0)
+            x -= stepSize;
+            
+            if(e.keyCode === 39 && a1.offsetLeft + 202 < document.documentElement.clientWidth)
+            x += stepSize;
+
+            a1.style.left = x + 'px';
+            
+            
+
+        }
+    </script>
+    <input type="button" value="Restart" onclick="window.location.reload()">
+   
+</body>
+</html>

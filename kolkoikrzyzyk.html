@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kolko i krzyzyk</title>
+    <style>
+        body {
+    background-color:#434343;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', serif;
+}
+
+.pasek {
+    background-color:#595959;
+    text-shadow:2px 2px 5px #000000;
+    box-shadow:2px 2px 5px #000000;
+    color:#ffffff;
+    list-style:none;
+    text-align:center;
+    padding:20px 0 20px 0;
+}
+
+li {
+    display:inline-block;
+    padding-right:50px;
+}
+
+a {
+    text-decoration:none;
+    color:#ffffff;
+}
+
+a:hover {
+    color:#c1c1c1;
+}
+
+input[type=button] {
+    border:2px solid #c3c3c3;
+    background-color:#c1c1c1;
+    padding:4px;
+    margin:10px 0 0 20px;
+}
+
+        div {position:absolute; width: 100px; height: 100px; border: #ffffff 3px solid; background-color:#a1a1a1;}
+        div img {width: 100px; height: 100px;}
+    </style>
+    <script>
+        function GenGrid()
+        {
+            let num = 3;
+            let newdiv;
+            let divIdName;
+            for(let j = 0; j < num; j++)
+            {
+            for (let i = 0; i < num; i++)
+            {
+                newdiv = document.createElement('div');
+                divIdName = 'a' + i + j;
+                newdiv.setAttribute('id', divIdName);
+                newdiv.style.top = 100 + 100 * i + "px";
+                newdiv.style.left = 100 + 100 * j + "px";
+                newdiv.addEventListener('click', function(){Graj(this);});
+                document.body.appendChild(newdiv);
+            }
+        }
+        }
+
+        let p1 = "<img src='kolko.png'>";
+        let p2 = "<img src='krzyzyk.png'>";
+        let k = 0;
+        let tab33 = [[0,0,0], [0,0,0], [0,0,0]];
+        let ids = [['a00','a01','a02'],
+                  ['a10','a11','a12'],
+                  ['a20','a21','a22']];
+
+        function Sprawdz(a)
+        {
+            let win = false;
+            let sum1 = 0, sum2 = 0, sum11 = 0, sum21 = 0;
+
+            for(let i = 0; i < 3; i++)
+            {
+                for(let j = 0; j < 3; j++)
+                {
+                    sum1 += tab33[i][j];
+                    sum2 += tab33[j][i];
+                    if((i == 2 && j == 0) || (i == 1 && j == 1) || (i == 0 && j ==2 ))
+                    sum11 += tab33[i][j];
+
+                    if(i == j)
+                    sum21 += tab33[i][j];
+                    }
+                
+                    if(sum1 == 3 * a || sum2 == 3 * a || sum11 == 3 * a || sum21 == 3 * a)
+                    win = true;
+
+
+             sum1 = 0;
+             sum2 = 0;
+            }
+            sum11 = 0;
+            sum21 = 0;
+            
+            return win;
+        }
+
+        function Graj(x)
+        {
+            let row, col;
+            for(let j = 0; j < 3; j ++)
+            {
+                for(let i = 0; i < 3; i ++)
+                {
+                    if(x == document.getElementById(ids[i][j]))
+                    {
+                        row = i; 
+                        col = j;
+                    }
+                }
+            }
+
+            console.log(row, col);
+            t33.innerHTML = "";
+
+            if(k == 0 && x.innerHTML != '<img src="krzyzyk.png">')
+            {
+                x.innerHTML = p1;
+                tab33[row][col] = 1;
+                if(Sprawdz(1))
+                {
+                    t33.innerHTML = p1;
+                    setTimeout('window.location.reload()', 1000)
+                    
+                }
+                k = 1;
+            }
+            else if(k != 0 && x.innerHTML != '<img src="kolko.png">')
+            {
+                x.innerHTML = p2;
+                tab33[row][col] = -1;
+                if(Sprawdz(-1))
+                {
+                    t33.innerHTML = p2;
+                    setTimeout('window.location.reload()', 1000)
+                }
+                k = 0;
+            }
+        }
+
+    </script>
+</head>
+<body onload="GenGrid()">
+    <ul class="pasek">
+        <li><a href="kalkulator.html">Kalkulator</a></li>
+        <li><a href="div.html">Div</a></li>
+        <li><a href="memory.html">Gra memory</a></li>
+        <li><a href="galeria.html">Galeria</a></li>
+        <li><a href="kolkoikrzyzyk.html">Kolko i krzyzyk</a></li>
+        <li><a href="przesuwanieobrazkow.html">Przesuwanie obrazkow</a></li>
+        <li><a href="pilka.html">Odbijanie pilki</a></li>
+    </ul>
+    <div id ="t33" style ="left: 420px; top: 100px; "></div>
+    <input type="button" value="Restart" onclick="window.location.reload()">
+    
+</body>
+</html>

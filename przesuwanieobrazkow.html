@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        body {
+    background-color:#434343;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', serif;
+}
+
+.pasek {
+    background-color:#595959;
+    text-shadow:2px 2px 5px #000000;
+    box-shadow:2px 2px 5px #000000;
+    color:#ffffff;
+    list-style:none;
+    text-align:center;
+    padding:20px 0 20px 0;
+}
+
+li {
+    display:inline-block;
+    padding-right:50px;
+}
+
+a {
+    text-decoration:none;
+    color:#ffffff;
+}
+
+a:hover {
+    color:#c1c1c1;
+}
+
+input[type="button"] {
+    border:2px solid #c3c3c3;
+    background-color:#c1c1c1;
+    padding:4px;
+    margin-bottom:10px;
+    margin-left:10px;
+    display:block;
+}
+
+
+
+        div {position:absolute; width:100px; height:100px; border:1px solid black; background-color:#c1c1c1}
+        div img {width:100px; height:100px;}
+    </style>
+    <script>
+
+        function Mieszaj()
+        {
+            for(let i = 0; i < 16; i++)
+            TabPos[i][2] = 0;
+            let x, i = 0;
+            while(i < 16)
+            {
+                x = Math.floor(Math.random() * 16);
+                if(TabPos[x][2] == 0)
+                {
+                    TabDiv[i].style.left = TabPos[x][0];
+                    TabDiv[i].style.top = TabPos[x][1];
+                    i++;
+                    TabPos[x][2] = 1;
+                }
+            }
+        }
+
+        function Graj(x) 
+        {
+            odx = a33.offsetLeft - x.offsetLeft;
+            ody = a33.offsetTop - x.offsetTop;
+            odl = Math.sqrt(Math.pow(odx, 2) + Math.pow(ody, 2));
+
+            if(a33.style.left == x.style.left && odl == 100) 
+            {
+                let bufor;
+            bufor = a33.style.top;
+            a33.style.top = x.style.top;
+            x.style.top = bufor;
+            }
+
+            if(a33.style.top == x.style.top && odl == 100) 
+            {
+                let bufor;
+            bufor = a33.style.left;
+            a33.style.left = x.style.left;
+            x.style.left = bufor;
+            }
+        }
+
+    </script>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Przesuwanie obrazkow</title>
+</head>
+<body>
+    <ul class="pasek">
+        <li><a href="kalkulator.html">Kalkulator</a></li>
+        <li><a href="div.html">Div</a></li>
+        <li><a href="memory.html">Gra memory</a></li>
+        <li><a href="galeria.html">Galeria</a></li>
+        <li><a href="kolkoikrzyzyk.html">Kolko i krzyzyk</a></li>
+        <li><a href="przesuwanieobrazkow.html">Przesuwanie obrazkow</a></li>
+        <li><a href="pilka.html">Odbijanie pilki</a></li>
+    </ul>
+
+    <input type="button" value="Mieszanie" onclick="Mieszaj()">
+    <input type="button" value="Restart" onclick="window.location.reload()">
+    <script>
+        var num = 4, newdiv, divIdName;
+        for(var i = 0; i < num; i++)
+        for(var j = 0; j < num; j++)
+        {
+            newdiv=document.createElement('div');
+            divIdName = 'a' + i + j;
+            newdiv.setAttribute('id', divIdName);
+            newdiv.style.top = 100 + 100 * i + 'px';
+            newdiv.style.left = 100 + 100 * j + 'px';
+            if(i * j != 9)
+            newdiv.innerHTML="<img src='slice_" + i + "_" + j + ".jpg'>";
+            newdiv.addEventListener('click', function(){ Graj(this);});
+            document.body.appendChild(newdiv);
+        }
+
+        let TabDiv = document.querySelectorAll('div');
+        let TabPos = [];
+        for(var i = 0; i < 16; i++)
+        TabPos[i] = [];
+
+        for(var i = 0; i < 16; i++)
+        {
+            TabPos[i][0] = TabDiv[i].style.left;
+            TabPos[i][1] = TabDiv[i].style.top;
+            TabPos[i][2] = 0;
+            console.log(TabPos[i][0]);
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria</title>
+    <style>
+        body {
+    background-color:#434343;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', serif;
+}
+
+.pasek {
+    background-color:#595959;
+    text-shadow:2px 2px 5px #000000;
+    box-shadow:2px 2px 5px #000000;
+    color:#ffffff;
+    list-style:none;
+    text-align:center;
+    padding:20px 0 20px 0;
+}
+
+li {
+    display:inline-block;
+    padding-right:50px;
+}
+
+a {
+    text-decoration:none;
+    color:#ffffff;
+}
+
+a:hover {
+    color:#c1c1c1;
+}
+
+        div {position:absolute; background-color:#c1c1c1;}
+        .mini {border: black 2px solid; width:100px; height:100px; top:100px;}
+        .mini img {width:100px; height:100px;}
+        #ekran {left:50px; top:225px; width:500px; height:500px; background-color:#c1c1c1}
+        #ekran img {width:500px; height:500px; background-color:#c1c1c1}
+    </style>
+    <script>
+        function Wyswietl(a)
+        {
+            ekran.innerHTML = a.innerHTML;
+        }
+    </script>
+</head>
+<body>
+    <ul class="pasek">
+        <li><a href="kalkulator.html">Kalkulator</a></li>
+        <li><a href="div.html">Div</a></li>
+        <li><a href="memory.html">Gra memory</a></li>
+        <li><a href="galeria.html">Galeria</a></li>
+        <li><a href="kolkoikrzyzyk.html">Kolko i krzyzyk</a></li>
+        <li><a href="przesuwanieobrazkow.html">Przesuwanie obrazkow</a></li>
+        <li><a href="pilka.html">Odbijanie pilki</a></li>
+    </ul>
+
+    <div class="mini" id="a1" style="left:50px;" onclick="Wyswietl(this)"><img src='kaf1.png'></div>
+    <div class="mini" id="a2" style="left:150px;" onclick="Wyswietl(this)"><img src='kaf2.png'></div>
+    <div class="mini" id="a3" style="left:250px;" onclick="Wyswietl(this)"><img src='kaf3.png'></div>
+    <div class="mini" id="a4" style="left:350px;" onclick="Wyswietl(this)"><img src='kaf4.png'></div>
+    <div class="mini" id="a5" style="left:450px;" onclick="Wyswietl(this)"><img src='kaf5.png'></div>
+    <div class="mini" id="a6" style="left:550px;" onclick="Wyswietl(this)"><img src='kaf6.png'></div>
+
+    <div id="ekran"></div>
+</body>
+</html>

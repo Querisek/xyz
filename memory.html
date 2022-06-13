@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory</title>
+    <style>
+        body {
+    background-color:#434343;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', serif;
+}
+
+.pasek {
+    background-color:#595959;
+    text-shadow:2px 2px 5px #000000;
+    box-shadow:2px 2px 5px #000000;
+    color:#ffffff;
+    list-style:none;
+    text-align:center;
+    padding:20px 0 20px 0;
+}
+
+li {
+    display:inline-block;
+    padding-right:50px;
+}
+
+a {
+    text-decoration:none;
+    color:#ffffff;
+}
+
+a:hover {
+    color:#c1c1c1;
+}
+
+input[type="button"] {
+    border:2px solid #c3c3c3;
+    background-color:#c1c1c1;
+    padding:4px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-left:600px;
+    display:block;
+}
+
+        div {position:absolute;}
+        .mini {border:#000000 2px solid; width:96px; height:96px;}
+        .mini img {width:96px; height:96px}
+    </style>
+    <script>
+    
+        let TabImg=['kaf1', 'kaf2', 'kaf3', 'kaf2', 'kaf1', 'kaf4', 'kaf5', 'kaf3', 'kaf5', 'kaf4', 'kaf6', 'kaf7', 'kaf8', 'kaf7', 'kaf6', 'kaf9', 'kaf10', 'kaf8', 'kaf10', 'kaf9'];
+        let TabPos=[[50,100,0], [150,100,0], [250,100,0], [350,100,0], [450,100,0], [50,200,0], [150,200,0], [250,200,0], [350,200,0], [450,200,0], [50,300,0], [150,300,0], [250,300,0], [350,300,0], [450,300,0], [50,400,0], [150,400,0], [250,400,0], [350,400,0], [450,400,0]];
+     
+        function Zakryj()
+        {
+            for(let i = 0; i < 20; i++)
+            {
+                TabDiv[i].innerHTML = "<img src = 'kafx.jpg'>";
+       
+            }
+        }
+
+        function Odkryj(a)
+        {
+            for(let i = 0; i < 20; i++)
+            {
+                if(a == TabDiv[i])
+                a.innerHTML = "<img src = " + TabImg[i] + ".jpg>";
+            }
+        }
+
+        function Mieszaj(a)
+        {
+            for(let i = 0; i < 20; i++)
+            {
+                TabPos[i][2] = 0;
+            }
+            let x, i = 0;
+            while(i < 20)
+            {
+            x = Math.floor(Math.random() * 20);
+           
+            if(TabPos[x][2] == 0)
+            {
+            TabDiv[i].style.left = TabPos[x][0] + 'px';
+            TabDiv[i].style.top = TabPos[x][1] + 'px';
+            i++;
+            TabPos[x][2] = 1;
+            }
+            }  
+        }
+
+        let p = 0, one;
+       
+        function Graj(x)
+        {
+            if(p == 0)
+            {
+            Zakryj();
+            Odkryj(x);
+            one = x;
+            p = 1;
+            odl1 = x.offsetLeft - one.offsetLeft;
+            odl2 = x.offsetTop - one.offsetTop;
+            odl = Math.sqrt(Math.pow(odl1, 2) + Math.pow(odl2, 2));
+            }
+            
+            else
+            {
+            odl1 = x.offsetLeft - one.offsetLeft;
+            odl2 = x.offsetTop - one.offsetTop;
+            odl = Math.sqrt(Math.pow(odl1, 2) + Math.pow(odl2, 2));
+            
+                Odkryj(x);
+                if(one.innerHTML == x.innerHTML && odl != 0)
+                {
+                    one.style.visibility = "hidden";
+                    x.style.visibility = "hidden";
+                }
+                p = 0;
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <ul class="pasek">
+        <li><a href="kalkulator.html">Kalkulator</a></li>
+        <li><a href="div.html">Div</a></li>
+        <li><a href="memory.html">Gra memory</a></li>
+        <li><a href="galeria.html">Galeria</a></li>
+        <li><a href="kolkoikrzyzyk.html">Kolko i krzyzyk</a></li>
+        <li><a href="przesuwanieobrazkow.html">Przesuwanie obrazkow</a></li>
+        <li><a href="pilka.html">Odbijanie pilki</a></li>
+    </ul>
+ 
+    <input type="button" value="Zakrycie" onclick="Zakryj()">
+    <input type="button" value="Pomieszanie" onclick="Mieszaj()">
+    <input type="button" value="Restart" onclick="window.location.reload()">
+
+    <div class="mini" id="a1" style="left:50px; top:100px" onclick="Graj(this)"><img src='kaf1.jpg'></div>
+    <div class="mini" id="a2" style="left:150px; top:100px" onclick="Graj(this)"><img src='kaf2.jpg'></div>
+    <div class="mini" id="a3" style="left:250px; top:100px" onclick="Graj(this)"><img src='kaf3.jpg'></div>
+    <div class="mini" id="a4" style="left:350px; top:100px" onclick="Graj(this)"><img src='kaf2.jpg'></div>
+    <div class="mini" id="a5" style="left:450px; top:100px" onclick="Graj(this)"><img src='kaf1.jpg'></div>
+
+    <div class="mini" id="a6" style="left:50px; top:200px" onclick="Graj(this)"><img src='kaf4.jpg'></div>
+    <div class="mini" id="a7" style="left:150px; top:200px" onclick="Graj(this)"><img src='kaf5.jpg'></div>
+    <div class="mini" id="a8" style="left:250px; top:200px" onclick="Graj(this)"><img src='kaf3.jpg'></div>
+    <div class="mini" id="a9" style="left:350px; top:200px" onclick="Graj(this)"><img src='kaf5.jpg'></div>
+    <div class="mini" id="a10" style="left:450px; top:200px" onclick="Graj(this)"><img src='kaf4.jpg'></div>
+
+    <div class="mini" id="a11" style="left:50px; top:300px" onclick="Graj(this)"><img src='kaf6.jpg'></div>
+    <div class="mini" id="a12" style="left:150px; top:300px" onclick="Graj(this)"><img src='kaf7.jpg'></div>
+    <div class="mini" id="a13" style="left:250px; top:300px" onclick="Graj(this)"><img src='kaf8.jpg'></div>
+    <div class="mini" id="a14" style="left:350px; top:300px" onclick="Graj(this)"><img src='kaf7.jpg'></div>
+    <div class="mini" id="a15" style="left:450px; top:300px" onclick="Graj(this)"><img src='kaf6.jpg'></div>
+
+    <div class="mini" id="a16" style="left:50px; top:400px" onclick="Graj(this)"><img src='kaf9.jpg'></div>
+    <div class="mini" id="a17" style="left:150px; top:400px" onclick="Graj(this)"><img src='kaf10.jpg'></div>
+    <div class="mini" id="a18" style="left:250px; top:400px" onclick="Graj(this)"><img src='kaf8.jpg'></div>
+    <div class="mini" id="a19" style="left:350px; top:400px" onclick="Graj(this)"><img src='kaf10.jpg'></div>
+    <div class="mini" id="a20" style="left:450px; top:400px" onclick="Graj(this)"><img src='kaf9.jpg'></div>
+    
+</body>
+
+<script>
+    let TabDiv=document.querySelectorAll('div');
+</script>
+</html>

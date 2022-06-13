@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Div</title>
+    <style>
+        body {
+    background-color:#434343;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', serif;
+}
+
+.pasek {
+    background-color:#595959;
+    text-shadow:2px 2px 5px #000000;
+    box-shadow:2px 2px 5px #000000;
+    color:#ffffff;
+    list-style:none;
+    text-align:center;
+    padding:20px 0 20px 0;
+}
+
+li {
+    display:inline-block;
+    padding-right:50px;
+}
+
+a {
+    text-decoration:none;
+    color:#ffffff;
+}
+
+a:hover {
+    color:#c1c1c1;
+}
+
+input[type="button"] {
+    border:2px solid #c3c3c3;
+    background-color:#c1c1c1;
+    padding:4px;
+    margin-bottom:10px;
+    margin-top:10px;
+    margin-left:10px;
+    box-shadow: 1px 1px 2px #000000;
+    margin-right: 20px;
+    display:block;
+}
+
+input[type="color"] {
+    display:block;
+}
+
+        #div1 {
+            position:absolute;
+            width: 250px;
+            height: 300px;
+            top: 125px;
+            left: 150px;
+            margin: 25px;
+            padding: 15px;
+            border:rgb(0, 0, 0) 10px solid;
+            background-color: rgb(123, 140, 151);
+        }
+
+    </style>
+
+    <script>
+
+function ZmianaLeft()
+{
+    div1.style.left = form1.a2.value+"px";
+}
+
+function ZmianaWidth()
+{
+    div1.style.width = form1.a3.value+"px";
+}
+
+function ZmianaHeight()
+{
+    div1.style.height = form1.a4.value+"px";
+}
+
+function ZmianaTop()
+{
+    div1.style.top = form1.a5.value+"px";
+}
+
+function ZmianaMargin()
+{
+    div1.style.margin = form1.a6.value+"px";
+}
+
+function ZmianaPadding()
+{
+    div1.style.padding = form1.a7.value+"px";
+}
+
+function ZmianaBackcolor()
+{
+    var element = document.getElementById("div1");
+    element.style.backgroundColor = form1.a8.value;
+}
+
+function ZmianaBordercolor()
+{
+    var element = document.getElementById("div1");
+    element.style.borderColor = form1.a9.value;
+}
+
+function ZmianaBordersize()
+{
+    document.getElementById("div1").style.borderWidth = form1.a10.value+"px";
+}
+
+
+    </script>
+</head>
+<body>
+    <ul class="pasek">
+        <li><a href="kalkulator.html">Kalkulator</a></li>
+        <li><a href="div.html">Div</a></li>
+        <li><a href="memory.html">Gra memory</a></li>
+        <li><a href="galeria.html">Galeria</a></li>
+        <li><a href="kolkoikrzyzyk.html">Kolko i krzyzyk</a></li>
+        <li><a href="przesuwanieobrazkow.html">Przesuwanie obrazkow</a></li>
+        <li><a href="pilka.html">Odbijanie pilki</a></li>
+    </ul>
+
+    <input type="button" value="Reset" onclick="window.location.reload()">
+
+    <form name="form1">
+        <b style="color:#ffffff; text-shadow: 1px 1px 1px black">Left</b> <input type="text" name="a2" size="4">
+        <input type="button" onclick="ZmianaLeft()" value="Zmien">
+
+        <b style="color:#ffffff; text-shadow: 1px 1px 1px black">Width</b> <input type="text" name="a3" size="4">
+        <input type="button" onclick="ZmianaWidth()" value="Zmien">
+
+        <b style="color:#ffffff; text-shadow: 1px 1px 1px black">Height</b> <input type="text" name="a4" size="4">
+        <input type="button" onclick="ZmianaHeight()" value="Zmien">
+
+        <b style="color:#ffffff; text-shadow: 1px 1px 1px black">Top</b> <input type="text" name="a5" size="4">
+        <input type="button" onclick="ZmianaTop()" value="Zmien">
+
+        <b style="color:#ffffff; text-shadow: 1px 1px 1px black">Margin</b> <input type="text" name="a6" size="4">
+        <input type="button" onclick="ZmianaMargin()" value="Zmien">
+
+        <b style="color:#ffffff; text-shadow: 1px 1px 1px black">Padding</b> <input type="text" name="a7" size="4">
+        <input type="button" onclick="ZmianaPadding()" value="Zmien">
+
+        <b style="color:#ffffff; text-shadow: 1px 1px 1px black">Border-size</b> <input type="text" name="a10" size="4">
+        <input type="button" onclick="ZmianaBordersize()" value="Zmien">
+
+        <b style="color:#ffffff; text-shadow: 1px 1px 1px black">Background-color</b> 
+        <input type="color" name="a8" onchange="ZmianaBackcolor()">
+        
+        <b style="color:#ffffff; text-shadow: 1px 1px 1px black">Border-color</b> 
+        <input type="color" name="a9" onchange="ZmianaBordercolor()">
+
+      
+
+    </form>
+
+    <div id="div1" ></div>
+
+    </div>
+</body>
+</html>
